@@ -1,0 +1,65 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+    
+    function isAdmin() {
+      return isSignedIn() && (getUserData().role == 'admin' || request.auth.token.role == 'admin');
+    }
+
+    function isDoctor() {
+      return isSignedIn() && (getUserData().role == 'doctor' || request.auth.token.role == 'doctor');
+    }
+
+    // Users collection rules
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() || request.auth.uid == userId;
+      allow update, delete: if isAdmin() || request.auth.uid == userId;
+    }
+
+    // Appointments collection rules
+    match /appointments/{aptId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() && (
+        isAdmin() || 
+        resource.data.patientId == request.auth.uid || 
+        resource.data.doctorId == request.auth.uid
+      );
+      allow delete: if isAdmin();
+    }
+
+    // Medical Records collection rules
+    match /medicalRecords/{recId} {
+      allow read: if isSignedIn() && (
+        isAdmin() || 
+        isDoctor() || 
+        resource.data.patientId == request.auth.uid
+      );
+      allow create, update: if isAdmin() || isDoctor();
+      allow delete: if isAdmin();
+    }
+
+    // Feedback collection rules
+    match /feedback/{fbId} {
+      allow read: if true;
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // System Settings collection rules
+    match /systemSettings/{configId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}
