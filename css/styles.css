@@ -1,0 +1,184 @@
+/* Custom Healthcare App Stylesheet */
+
+@layer utilities {
+  /* Glassmorphism */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .dark .glass-card {
+    background: rgba(15, 23, 42, 0.85);
+  }
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(13, 148, 136, 0.6);
+}
+
+/* Animations */
+@keyframes toastSlideIn {
+  from {
+    transform: translateY(100%) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.toast-animate {
+  animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Active Nav Links */
+.nav-link {
+  display: flex;
+  items-center: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link-active {
+  background: linear-gradient(135deg, #0d9488 0%, #06b6d4 100%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
+}
+
+.nav-link-inactive {
+  color: #64748b;
+}
+
+.dark .nav-link-inactive {
+  color: #94a3b8;
+}
+
+.nav-link-inactive:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.dark .nav-link-inactive:hover {
+  background-color: #1e293b;
+  color: #f8fafc;
+}
+
+/* Role Selector Buttons */
+.role-btn-active {
+  background-color: #ffffff;
+  color: #0d9488;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.dark .role-btn-active {
+  background-color: #0f172a;
+  color: #2dd4bf;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.role-btn-inactive {
+  color: #64748b;
+}
+
+.dark .role-btn-inactive {
+  color: #94a3b8;
+}
+
+.role-btn-inactive:hover {
+  color: #0f172a;
+}
+
+.dark .role-btn-inactive:hover {
+  color: #f8fafc;
+}
+
+/* Status Badges */
+.badge-confirmed {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+.dark .badge-confirmed {
+  background-color: rgba(22, 101, 52, 0.3);
+  color: #4ade80;
+}
+
+.badge-pending {
+  background-color: #fef9c3;
+  color: #a16207;
+}
+.dark .badge-pending {
+  background-color: rgba(161, 98, 7, 0.3);
+  color: #fde047;
+}
+
+.badge-completed {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+.dark .badge-completed {
+  background-color: rgba(3, 105, 161, 0.3);
+  color: #38bdf8;
+}
+
+.badge-cancelled {
+  background-color: #ffe4e6;
+  color: #be123c;
+}
+.dark .badge-cancelled {
+  background-color: rgba(190, 18, 60, 0.3);
+  color: #fb7185;
+}
+
+/* Custom Calendar Slot Matrix Grid */
+.slot-available {
+  background-color: #f0fdf4;
+  border-color: #86efac;
+  color: #166534;
+}
+.dark .slot-available {
+  background-color: rgba(20, 83, 45, 0.3);
+  border-color: #22c55e;
+  color: #86efac;
+}
+
+.slot-booked {
+  background-color: #e0f2fe;
+  border-color: #7dd3fc;
+  color: #0369a1;
+}
+.dark .slot-booked {
+  background-color: rgba(12, 74, 110, 0.4);
+  border-color: #38bdf8;
+  color: #7dd3fc;
+}
+
+.slot-blocked {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #64748b;
+}
+.dark .slot-blocked {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #64748b;
+}
