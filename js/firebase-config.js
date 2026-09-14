@@ -6,14 +6,15 @@
  * Firebase Console -> Project Settings -> General -> Your apps -> Web app SDK setup
  */
 
-// Production Firebase Project Configuration Placeholder
+// Production Firebase Project Configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDemoKey_ReplaceWithYourActualFirebaseApiKey",
-  authDomain: "medicare-pulse-saas.firebaseapp.com",
-  projectId: "medicare-pulse-saas",
-  storageBucket: "medicare-pulse-saas.appspot.com",
-  messagingSenderId: "102938475610",
-  appId: "1:102938475610:web:a1b2c3d4e5f67890"
+  apiKey: "AIzaSyDkDKfqFiTGfjT6CmF0r1mwWYwnJsV9_eE",
+  authDomain: "medi-care-287f2.firebaseapp.com",
+  projectId: "medi-care-287f2",
+  storageBucket: "medi-care-287f2.firebasestorage.app",
+  messagingSenderId: "170970226559",
+  appId: "1:170970226559:web:908fc10789d075658e044a",
+  measurementId: "G-D40TRS0V58"
 };
 
 let firebaseApp = null;
